@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parag ❤️ Nimisha | Wedding Countdown</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -95,6 +97,28 @@
       line-height: 1.6;
     }
 
+    .location-link {
+  color: inherit; /* match text color (white/pink theme) */
+  text-decoration: none;
+  font-weight: 600; /* bold text */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.location-link:hover {
+  color: #ffdede; /* romantic soft pink hover */
+  text-shadow: 0 0 8px rgba(255, 220, 220, 0.4);
+}
+
+.location-icon {
+  color: #ffd700; /* elegant gold icon */
+  font-size: 1.1rem;
+  transform: translateY(1px);
+}
+
+
     footer {
       position: absolute;
       bottom: 1rem;
@@ -104,66 +128,86 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .venue a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .venue a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
 
 
     /* 🌸 MOBILE VIEW STYLING (Improved for Better Balance) */
-@media (max-width: 580px) {
-  body {
-    background: url('https://raw.githubusercontent.com/paragikjain/npforever/main/2.JPG') no-repeat center center/cover;
-    background-attachment: scroll;
-    height: 100vh;
-  }
+    @media (max-width: 574px) {
+      body {
+        background: url('https://raw.githubusercontent.com/paragikjain/npforever/main/2.JPG') no-repeat center center/cover;
+        background-attachment: scroll;
+        height: 100vh;
+      }
 
-  .content {
-    max-width: 95%;
-    padding: 1rem;
-    margin-top: 4.5rem; /* ✅ pushes everything slightly lower */
-  }
+      .content {
+        max-width: 95%;
+        padding: 1rem;
+        margin-top: 4.5rem;
+        /* ✅ pushes everything slightly lower */
+      }
 
-  h1 {
-    font-size: 2.6rem;
-    margin-top: 1.5rem; /* ✅ shifts title down */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  }
+      h1 {
+        font-size: 2.6rem;
+        margin-top: 1.5rem;
+        /* ✅ shifts title down */
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
 
-  .names {
-    font-size: 1.4rem;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-  }
+      .names {
+        font-size: 1.4rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+      }
 
-  /* Arrange countdown: 2 top + 2 bottom */
-  .countdown {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
+      /* Arrange countdown: 2 top + 2 bottom */
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
 
-  .countdown div {
-    padding: 0.8rem 1rem;
-    border-radius: 0.8rem;
-  }
+      .countdown div {
+        padding: 0.8rem 1rem;
+        border-radius: 0.8rem;
+      }
 
-  .countdown span {
-    font-size: 1.6rem;
-  }
+      .countdown span {
+        font-size: 1.6rem;
+      }
 
-  .label {
-    font-size: 0.8rem;
-  }
+      .label {
+        font-size: 0.8rem;
+      }
 
-  .venue {
-    font-size: 1rem;
-    margin-top: 2rem;
-  }
+      .venue {
+        font-size: 1rem;
+        margin-top: 2rem;
+      }
 
-  footer {
-    font-size: 0.8rem;
-  }
-}
-
+      footer {
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 
@@ -172,20 +216,34 @@
     <h1>Parag ❤️ Nimisha</h1>
     <div class="names">Are Getting Married!</div>
     <div class="countdown" id="countdown">
-      <div><span id="days">00</span><div class="label">Days</div></div>
-      <div><span id="hours">00</span><div class="label">Hours</div></div>
-      <div><span id="minutes">00</span><div class="label">Minutes</div></div>
-      <div><span id="seconds">00</span><div class="label">Seconds</div></div>
+      <div><span id="days">00</span>
+        <div class="label">Days</div>
+      </div>
+      <div><span id="hours">00</span>
+        <div class="label">Hours</div>
+      </div>
+      <div><span id="minutes">00</span>
+        <div class="label">Minutes</div>
+      </div>
+      <div><span id="seconds">00</span>
+        <div class="label">Seconds</div>
+      </div>
     </div>
 
-    <div class="venue">
-      <p>30th November, 11:00 AM</p>
-      <p>Aashish Farm House, Partapur</p>
-    </div>
+   <div class="venue">
+  <p>30th November, 11:00 AM</p>
+  <p>
+    <a href="https://maps.app.goo.gl/KiABUQHLhE4hLNGw8" target="_blank" rel="noopener noreferrer" class="location-link">
+      <span class="location-icon">📍</span>
+      <strong>Aashish Farm House, Partapur</strong>
+    </a>
+  </p>
+</div>
+
   </div>
 
-  <audio autoplay loop>
-    <source src="romantic.mp3" type="audio/mpeg">
+  <audio id="bg-music" loop>
+    <source src="https://raw.githubusercontent.com/paragikjain/npforever/main/romantic.mp3" type="audio/mpeg">
   </audio>
 
   <footer>With love, Parag & Nimisha ❤️</footer>
@@ -214,6 +272,22 @@
       }
     }, 1000);
 
+    const audio = document.getElementById('bg-music');
+
+    // Try autoplay immediately
+    audio.play().catch(() => {
+      // If browser blocks autoplay, start after first click/touch
+      document.body.addEventListener('click', () => {
+        audio.play();
+      }, { once: true });
+    });
+
+    // ✅ Ensure infinite loop (even if loop attribute fails)
+    audio.addEventListener('ended', () => {
+      audio.currentTime = 0;
+      audio.play();
+    });
   </script>
 </body>
+
 </html>
