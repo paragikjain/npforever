@@ -98,25 +98,29 @@
     }
 
     .location-link {
-  color: inherit; /* match text color (white/pink theme) */
-  text-decoration: none;
-  font-weight: 600; /* bold text */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
+      color: inherit;
+      /* match text color (white/pink theme) */
+      text-decoration: none;
+      font-weight: 600;
+      /* bold text */
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
 
-.location-link:hover {
-  color: #ffdede; /* romantic soft pink hover */
-  text-shadow: 0 0 8px rgba(255, 220, 220, 0.4);
-}
+    .location-link:hover {
+      color: #ffdede;
+      /* romantic soft pink hover */
+      text-shadow: 0 0 8px rgba(255, 220, 220, 0.4);
+    }
 
-.location-icon {
-  color: #ffd700; /* elegant gold icon */
-  font-size: 1.1rem;
-  transform: translateY(1px);
-}
+    .location-icon {
+      color: #ffd700;
+      /* elegant gold icon */
+      font-size: 1.1rem;
+      transform: translateY(1px);
+    }
 
 
     footer {
@@ -230,15 +234,16 @@
       </div>
     </div>
 
-   <div class="venue">
-  <p>30th November, 11:00 AM</p>
-  <p>
-    <a href="https://maps.app.goo.gl/KiABUQHLhE4hLNGw8" target="_blank" rel="noopener noreferrer" class="location-link">
-      <span class="location-icon">📍</span>
-      <strong>Aashish Farm House, Partapur</strong>
-    </a>
-  </p>
-</div>
+    <div class="venue">
+      <p>30th November, 11:00 AM</p>
+      <p>
+        <a href="https://maps.app.goo.gl/KiABUQHLhE4hLNGw8" target="_blank" rel="noopener noreferrer"
+          class="location-link">
+          <span class="location-icon">📍</span>
+          <strong>Aashish Farm House, Partapur</strong>
+        </a>
+      </p>
+    </div>
 
   </div>
 
@@ -272,20 +277,28 @@
       }
     }, 1000);
 
-    const audio = document.getElementById('bg-music');
+    const audio = document.getElementById("bg-music");
 
-    // Try autoplay immediately
-    audio.play().catch(() => {
-      // If browser blocks autoplay, start after first click/touch
-      document.body.addEventListener('click', () => {
-        audio.play();
-      }, { once: true });
-    });
+    // Force playback attempt immediately
+    window.addEventListener('load', () => {
+      audio.volume = 1.0;
+      const playPromise = audio.play();
 
-    // ✅ Ensure infinite loop (even if loop attribute fails)
-    audio.addEventListener('ended', () => {
-      audio.currentTime = 0;
-      audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log("Audio autoplayed successfully 🎵");
+          })
+          .catch(() => {
+            // If blocked, try unmuted playback after small delay
+            audio.muted = true;
+            audio.play().then(() => {
+              setTimeout(() => {
+                audio.muted = false; // Unmute after a brief start
+              }, 1000);
+            });
+          });
+      }
     });
   </script>
 </body>
