@@ -45,6 +45,14 @@
       z-index: 2;
       max-width: 90%;
       animation: fadeIn 2s ease-in;
+      display: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .content.active {
+      display: block;
+      opacity: 1;
     }
 
     h1 {
@@ -99,10 +107,8 @@
 
     .location-link {
       color: inherit;
-      /* match text color (white/pink theme) */
       text-decoration: none;
       font-weight: 600;
-      /* bold text */
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
@@ -111,17 +117,14 @@
 
     .location-link:hover {
       color: #ffdede;
-      /* romantic soft pink hover */
       text-shadow: 0 0 8px rgba(255, 220, 220, 0.4);
     }
 
     .location-icon {
       color: #ffd700;
-      /* elegant gold icon */
       font-size: 1.1rem;
       transform: translateY(1px);
     }
-
 
     footer {
       position: absolute;
@@ -129,6 +132,13 @@
       font-size: 0.9rem;
       opacity: 0.8;
       z-index: 2;
+      display: none;
+      transition: opacity 1.2s ease;
+    }
+
+    footer.active {
+      display: block;
+      opacity: 1;
     }
 
     @keyframes fadeIn {
@@ -143,20 +153,50 @@
       }
     }
 
-    .venue a {
-      color: inherit;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
+    /* 🌸 Intro screen */
+    .intro {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      transition: opacity 1s ease;
     }
 
-    .venue a:hover {
-      color: #fff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    .intro h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #ffe4e1;
+      margin-bottom: 1.5rem;
     }
 
+    .start-btn {
+      background: #ffb6c1;
+      color: #333;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
 
-    /* 🌸 MOBILE VIEW STYLING (Improved for Better Balance) */
+    .start-btn:hover {
+      background: #ffd1dc;
+      transform: scale(1.05);
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* 🌸 MOBILE VIEW STYLING (Unchanged) */
     @media (max-width: 574px) {
       body {
         background: url('https://raw.githubusercontent.com/paragikjain/npforever/main/2.JPG') no-repeat center center/cover;
@@ -168,13 +208,11 @@
         max-width: 95%;
         padding: 1rem;
         margin-top: 4.5rem;
-        /* ✅ pushes everything slightly lower */
       }
 
       h1 {
         font-size: 2.6rem;
         margin-top: 1.5rem;
-        /* ✅ shifts title down */
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
       }
 
@@ -184,7 +222,6 @@
         margin-bottom: 1.5rem;
       }
 
-      /* Arrange countdown: 2 top + 2 bottom */
       .countdown {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -216,7 +253,13 @@
 </head>
 
 <body>
-  <div class="content">
+  <!-- 🎵 Intro Screen -->
+  <div class="intro" id="intro">
+    <h2>💖 Endless Love Story 💖</h2>
+    <button class="start-btn" id="startBtn">Reveal the Moment</button>
+  </div>
+
+  <div class="content" id="mainContent">
     <h1>Parag ❤️ Nimisha</h1>
     <div class="names">Are Getting Married!</div>
     <div class="countdown" id="countdown">
@@ -244,20 +287,20 @@
         </a>
       </p>
     </div>
-
   </div>
 
   <audio id="bg-music" loop>
     <source src="https://raw.githubusercontent.com/paragikjain/npforever/main/romantic.mp3" type="audio/mpeg">
   </audio>
 
-  <footer>With love, Parag & Nimisha ❤️</footer>
+  <footer id="footer">With love, Parag & Nimisha ❤️</footer>
 
   <script>
     const weddingDate = new Date("Nov 30, 2025 11:00:00").getTime();
     const countdown = document.getElementById("countdown");
+    const audio = document.getElementById("bg-music");
 
-    const x = setInterval(() => {
+    setInterval(() => {
       const now = new Date().getTime();
       const distance = weddingDate - now;
 
@@ -271,34 +314,26 @@
       document.getElementById("minutes").innerText = minutes;
       document.getElementById("seconds").innerText = seconds;
 
-      if (distance < 0) {
-        clearInterval(x);
-        countdown.innerHTML = "The Wedding Has Begun 🎉";
-      }
+      if (distance < 0) countdown.innerHTML = "The Wedding Has Begun 🎉";
     }, 1000);
 
-    const audio = document.getElementById("bg-music");
+    document.getElementById("startBtn").addEventListener("click", () => {
+      const intro = document.getElementById("intro");
+      const mainContent = document.getElementById("mainContent");
+      const footer = document.getElementById("footer");
 
-    // Force playback attempt immediately
-    window.addEventListener('load', () => {
-      audio.volume = 1.0;
-      const playPromise = audio.play();
+      intro.classList.add("hidden");
+      setTimeout(() => intro.style.display = "none", 1000);
 
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log("Audio autoplayed successfully 🎵");
-          })
-          .catch(() => {
-            // If blocked, try unmuted playback after small delay
-            audio.muted = true;
-            audio.play().then(() => {
-              setTimeout(() => {
-                audio.muted = false; // Unmute after a brief start
-              }, 1000);
-            });
-          });
-      }
+      mainContent.classList.add("active");
+      footer.classList.add("active");
+
+      audio.play().catch(err => console.log("Autoplay blocked:", err));
+    });
+
+    audio.addEventListener("ended", () => {
+      audio.currentTime = 0;
+      audio.play();
     });
   </script>
 </body>
