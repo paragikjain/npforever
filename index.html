@@ -15,7 +15,7 @@
     body {
       font-family: 'Poppins', sans-serif;
       height: 100vh;
-      background: url('1.jpg') no-repeat center center/cover;
+      background: url('https://raw.githubusercontent.com/paragikjain/npforever/main/1.JPG') no-repeat center center/cover;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -108,25 +108,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Sparkle animation */
-    .sparkle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 50%;
-      animation: floatUp 6s linear infinite;
-    }
-
-    @keyframes floatUp {
-      from { transform: translateY(100vh) scale(1); opacity: 1; }
-      to { transform: translateY(-10vh) scale(0.5); opacity: 0; }
-    }
 
     /* 🌸 MOBILE VIEW STYLING (Improved for Better Balance) */
 @media (max-width: 580px) {
   body {
-    background: url('2.jpg') no-repeat center center/cover;
+    background: url('https://raw.githubusercontent.com/paragikjain/npforever/main/2.JPG') no-repeat center center/cover;
     background-attachment: scroll;
     height: 100vh;
   }
@@ -228,15 +214,6 @@
       }
     }, 1000);
 
-    // Floating sparkles
-    for (let i = 0; i < 25; i++) {
-      const sparkle = document.createElement("div");
-      sparkle.classList.add("sparkle");
-      sparkle.style.left = Math.random() * 100 + "vw";
-      sparkle.style.animationDelay = Math.random() * 5 + "s";
-      sparkle.style.animationDuration = 5 + Math.random() * 5 + "s";
-      document.body.appendChild(sparkle);
-    }
   </script>
 </body>
 </html>
