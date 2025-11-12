@@ -15,7 +15,7 @@
     body {
       font-family: 'Poppins', sans-serif;
       height: 100vh;
-      background: url('https://raw.githubusercontent.com/paragikjain/npforever/main/1.JPG') no-repeat center center/cover;
+      background: url('1.jpg') no-repeat center center/cover;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,11 +26,14 @@
       position: relative;
     }
 
-    /* Overlay tint */
+    /* Overlay for elegant dark tint */
     body::before {
       content: "";
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: rgba(0, 0, 0, 0.45);
       z-index: 0;
     }
@@ -40,48 +43,42 @@
       z-index: 2;
       max-width: 90%;
       animation: fadeIn 2s ease-in;
-      padding: 1rem;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: 4rem;
       margin-bottom: 0.8rem;
       color: #ffdde1;
-      text-shadow: 0 0 15px rgba(255, 200, 200, 0.6);
+      text-shadow: 0 0 25px rgba(255, 200, 200, 0.6);
     }
 
     .names {
-      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-size: 2rem;
       color: #fff8e7;
-      font-weight: 400;
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
     }
 
     .countdown {
-      margin-top: 2rem;
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, auto);
       justify-content: center;
       gap: 1rem;
-      flex-wrap: wrap;
+      margin-top: 1.5rem;
     }
 
     .countdown div {
       background: rgba(255, 255, 255, 0.15);
-      padding: 1rem 1.2rem;
+      padding: 1rem 1.5rem;
       border-radius: 1rem;
       backdrop-filter: blur(6px);
-      min-width: 70px;
-      flex: 1 1 70px;
-      transition: transform 0.3s ease;
-    }
-
-    .countdown div:hover {
-      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
     }
 
     .countdown span {
       display: block;
-      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-size: 2rem;
       font-weight: 600;
       color: #fff;
     }
@@ -92,8 +89,8 @@
     }
 
     .venue {
-      margin-top: 2.5rem;
-      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-top: 3rem;
+      font-size: 1.2rem;
       color: #ffe9e9;
       line-height: 1.6;
     }
@@ -102,9 +99,8 @@
       position: absolute;
       bottom: 1rem;
       font-size: 0.9rem;
-      opacity: 0.7;
-      width: 100%;
-      text-align: center;
+      opacity: 0.8;
+      z-index: 2;
     }
 
     @keyframes fadeIn {
@@ -117,10 +113,9 @@
       position: absolute;
       width: 6px;
       height: 6px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255,255,255,0.8);
       border-radius: 50%;
       animation: floatUp 6s linear infinite;
-      z-index: 1;
     }
 
     @keyframes floatUp {
@@ -128,43 +123,65 @@
       to { transform: translateY(-10vh) scale(0.5); opacity: 0; }
     }
 
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      body {
-        background-attachment: scroll;
-      }
+    /* 🌸 MOBILE VIEW STYLING (Improved for Better Balance) */
+@media (max-width: 580px) {
+  body {
+    background: url('2.jpg') no-repeat center center/cover;
+    background-attachment: scroll;
+    height: 100vh;
+  }
 
-      .countdown {
-        gap: 0.7rem;
-      }
+  .content {
+    max-width: 95%;
+    padding: 1rem;
+    margin-top: 4.5rem; /* ✅ pushes everything slightly lower */
+  }
 
-      .countdown div {
-        padding: 0.8rem 1rem;
-      }
+  h1 {
+    font-size: 2.6rem;
+    margin-top: 1.5rem; /* ✅ shifts title down */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
 
-      footer {
-        font-size: 0.8rem;
-        bottom: 0.5rem;
-      }
-    }
+  .names {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
-      }
+  /* Arrange countdown: 2 top + 2 bottom */
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 
-      .countdown span {
-        font-size: 1.4rem;
-      }
+  .countdown div {
+    padding: 0.8rem 1rem;
+    border-radius: 0.8rem;
+  }
 
-      .venue {
-        margin-top: 2rem;
-      }
-    }
+  .countdown span {
+    font-size: 1.6rem;
+  }
+
+  .label {
+    font-size: 0.8rem;
+  }
+
+  .venue {
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
+
   </style>
 </head>
-<body>
 
+<body>
   <div class="content">
     <h1>Parag ❤️ Nimisha</h1>
     <div class="names">Are Getting Married!</div>
@@ -189,8 +206,9 @@
 
   <script>
     const weddingDate = new Date("Nov 30, 2025 11:00:00").getTime();
+    const countdown = document.getElementById("countdown");
 
-    const x = setInterval(function() {
+    const x = setInterval(() => {
       const now = new Date().getTime();
       const distance = weddingDate - now;
 
@@ -199,24 +217,24 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
 
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("countdown").innerHTML = "The Wedding Has Begun 🎉";
+        countdown.innerHTML = "The Wedding Has Begun 🎉";
       }
     }, 1000);
 
-    // Sparkles
-    for (let i = 0; i < 30; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.classList.add('sparkle');
-      sparkle.style.left = Math.random() * 100 + 'vw';
-      sparkle.style.animationDelay = Math.random() * 5 + 's';
-      sparkle.style.animationDuration = 5 + Math.random() * 5 + 's';
+    // Floating sparkles
+    for (let i = 0; i < 25; i++) {
+      const sparkle = document.createElement("div");
+      sparkle.classList.add("sparkle");
+      sparkle.style.left = Math.random() * 100 + "vw";
+      sparkle.style.animationDelay = Math.random() * 5 + "s";
+      sparkle.style.animationDuration = 5 + Math.random() * 5 + "s";
       document.body.appendChild(sparkle);
     }
   </script>
